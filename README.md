@@ -25,13 +25,17 @@ import 'package:flutter_month_picker/flutter_month_picker.dart';
 
 ## Example
 
+<hr>
+
 <table>
 <tr>
 <td>
+
 ```dart
-Class FlutterMonthPicker extends StatelessWidget{
-    const FlutterMonthPicker({Key? key}):super(key:key);
-    @override
+class FlutterMonthPicker extends StatelessWidget {
+  const FlutterMonthPicker({Key? key}) : super(key: key);
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -43,6 +47,7 @@ Class FlutterMonthPicker extends StatelessWidget{
               firstDate: DateTime(2000),
               lastDate: DateTime(2050),
             );
+            log(date.toString());
           },
           child: const Text('Open Month Picker'),
         ),
@@ -51,9 +56,10 @@ Class FlutterMonthPicker extends StatelessWidget{
   }
 }
 ```
+
 </td>
 <td>
-<img  src="https://user-images.githubusercontent.com/4393183/188474408-335c9bfb-890c-4496-9b97-71fd7a3f1714.png"  alt="Flutter Month Picker Image.">
+<img  src="https://user-images.githubusercontent.com/53579386/126896556-911d4778-04cd-49bf-b32a-01a6eb3b0155.jpeg"  alt="">
 </td>
 </tr>
 </table>
