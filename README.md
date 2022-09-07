@@ -38,17 +38,18 @@ final selected = await showMonthPicker(
 
 ## Parameters
 
-| Prameters | Description |
-| context | Must not be null. Will be passed to the internal showMonthPicker funtion call|
-| initialDate | Must not be `null` and must fall between the `firstDate` and `lastDate`. The `initialDate` will be truncated to its `year` and `month` components. When the month/year picker is first displayed, it will show the month/year of the `initialDate`, with `initialDate` selected. |
-| firstDate | Must not be `null`. The `firstDate` will be truncated to its `year` and `month` components. This is the earliest allowable month/year.|
-| lastDate | Must not be `null`. The `lastDate` will be truncated to its `year` and `month` components. This is the latest allowable month/year. |
+| Parameter     | Description                                                                                                                                                                                                                                                                      |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `context`     | Must not be null. Will be passed to the internal showMonthPicker funtion call.                                                                                                                                                                                                   |
+| `initialDate` | Must not be `null` and must fall between the `firstDate` and `lastDate`. The `initialDate` will be truncated to its `year` and `month` components. When the month/year picker is first displayed, it will show the month/year of the `initialDate`, with `initialDate` selected. |
+| `firstDate`   | Must not be `null`. The `firstDate` will be truncated to its `year` and `month` components. This is the earliest allowable month/year.                                                                                                                                           |
+| `lastDate`    | Must not be `null`. The `lastDate` will be truncated to its `year` and `month` components. This is the latest allowable month/year.                                                                                                                                              |
 
 ## Screenshot
 
 | Mode           | Screenshot                     |
 | -------------- | ------------------------------ |
-| Portrait mode  | ![](screenshots/portrait.png)  |
+| Portrait mode  | ![](screenshots/potrait.png)   |
 | Landscape mode | ![](screenshots/landscape.png) |
 
 ## Next Goals
