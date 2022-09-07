@@ -1,5 +1,3 @@
-library flutter_month_picker;
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -9,7 +7,7 @@ import 'package:intl/intl.dart';
 /// firstDate: date from which you want to start
 ///             should not be before lastDate
 /// lastDate: date where you want to stop
-
+///
 Future<DateTime?> showMonthPicker({
   required BuildContext context,
   required DateTime initialDate,
@@ -17,17 +15,15 @@ Future<DateTime?> showMonthPicker({
   required DateTime lastDate,
 }) async {
   return await showDialog(
-      context: context,
-      builder: (context) {
-        assert(initialDate.compareTo(firstDate) >= 0 &&
-            lastDate.compareTo(firstDate) > 0 &&
-            lastDate.compareTo(initialDate) > 0);
-        return _MonthPicker(
-          initialDate: initialDate,
-          firstDate: firstDate,
-          lastDate: lastDate,
-        );
-      });
+    context: context,
+    builder: (context) {
+      return _MonthPicker(
+        initialDate: initialDate,
+        firstDate: firstDate,
+        lastDate: lastDate,
+      );
+    },
+  );
 }
 
 class _MonthPicker extends StatefulWidget {
@@ -54,6 +50,7 @@ class __MonthPickerState extends State<_MonthPicker> {
   bool _isYearSelection = false;
   late final DateTime _firstDate;
   late final DateTime _lastDate;
+
   @override
   void initState() {
     super.initState();
@@ -71,7 +68,8 @@ class __MonthPickerState extends State<_MonthPicker> {
 
     final content = Material(
       shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(30.0))),
+        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+      ),
       child: Column(
         children: [
           pager,
@@ -85,27 +83,28 @@ class __MonthPickerState extends State<_MonthPicker> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Builder(builder: (context) {
-            return MediaQuery.of(context).orientation == Orientation.portrait
-                ? IntrinsicWidth(
-                    child: Column(
-                    children: [
-                      IntrinsicHeight(
-                        child: _buildHeader(theme),
-                      ),
-                      const SizedBox(height: 8.0),
-                      content,
-                    ],
-                  ))
-                : IntrinsicHeight(
-                    child: Row(children: [
-                      _buildHeader(theme),
-                      const SizedBox(width: 8.0),
-                      content,
-                    ]),
-                  );
-          }),
-          // ),
+          Builder(
+            builder: (context) {
+              return MediaQuery.of(context).orientation == Orientation.portrait
+                  ? IntrinsicWidth(
+                      child: Column(
+                      children: [
+                        IntrinsicHeight(
+                          child: _buildHeader(theme),
+                        ),
+                        const SizedBox(height: 8.0),
+                        content,
+                      ],
+                    ))
+                  : IntrinsicHeight(
+                      child: Row(children: [
+                        _buildHeader(theme),
+                        const SizedBox(width: 8.0),
+                        content,
+                      ]),
+                    );
+            },
+          ),
         ],
       ),
     );
@@ -113,7 +112,7 @@ class __MonthPickerState extends State<_MonthPicker> {
 
   _buildHeader(ThemeData theme) {
     return Material(
-      color: theme.colorScheme.primary,
+      color: Colors.blue,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(30.0))),
       child: Padding(
@@ -122,10 +121,11 @@ class __MonthPickerState extends State<_MonthPicker> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Center(
-                child: Text(
-              DateFormat.yMMM().format(_selectedDate),
-              style: theme.primaryTextTheme.subtitle1,
-            )),
+              child: Text(
+                DateFormat.yMMM().format(_selectedDate),
+                style: theme.primaryTextTheme.subtitle1,
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -135,9 +135,10 @@ class __MonthPickerState extends State<_MonthPicker> {
                     color: theme.primaryIconTheme.color,
                   ),
                   onPressed: () => _pageController.animateToPage(
-                      _displayedPage - 1,
-                      duration: const Duration(milliseconds: 400),
-                      curve: Curves.easeIn),
+                    _displayedPage - 1,
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeIn,
+                  ),
                 ),
                 DefaultTextStyle(
                   style: theme.primaryTextTheme.headline5!,
@@ -146,11 +147,13 @@ class __MonthPickerState extends State<_MonthPicker> {
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            Text(DateFormat.y()
-                                .format(DateTime(_displayedPage * 12))),
-                            const Text('-'),
-                            Text(DateFormat.y()
-                                .format(DateTime(_displayedPage * 12 + 11))),
+                            Text(DateFormat.y().format(
+                              DateTime(_displayedPage * 12),
+                            )),
+                            const Text(' - '),
+                            Text(DateFormat.y().format(
+                              DateTime(_displayedPage * 12 + 11),
+                            )),
                           ],
                         )
                       : GestureDetector(
@@ -159,7 +162,8 @@ class __MonthPickerState extends State<_MonthPicker> {
                             _pageController.jumpToPage(_displayedPage ~/ 12);
                           },
                           child: Text(
-                              DateFormat.y().format(DateTime(_displayedPage))),
+                            DateFormat.y().format(DateTime(_displayedPage)),
+                          ),
                         ),
                 ),
                 IconButton(
@@ -168,9 +172,10 @@ class __MonthPickerState extends State<_MonthPicker> {
                     color: theme.primaryIconTheme.color,
                   ),
                   onPressed: () => _pageController.animateToPage(
-                      _displayedPage + 1,
-                      duration: const Duration(milliseconds: 400),
-                      curve: Curves.easeIn),
+                    _displayedPage + 1,
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeIn,
+                  ),
                 ),
               ],
             ),
@@ -208,8 +213,9 @@ class __MonthPickerState extends State<_MonthPicker> {
                     .map((month) => DateTime(page, month))
                     .map(
                       (date) => Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: _getMonthButton(date, colorScheme)),
+                        padding: const EdgeInsets.all(4.0),
+                        child: _getMonthButton(date, colorScheme),
+                      ),
                     )
                     .toList(),
           );
@@ -221,23 +227,26 @@ class __MonthPickerState extends State<_MonthPicker> {
   _getYearButton(int year, ColorScheme colorScheme) {
     bool isSelected = year == _selectedDate.year;
     return TextButton(
-      onPressed: () {
-        setState(() {
+      onPressed: () => setState(
+        () {
           _pageController.jumpToPage(year);
-          setState(() {
-            _isYearSelection = false;
-          });
-        });
-      },
+          setState(() => _isYearSelection = false);
+        },
+      ),
       style: TextButton.styleFrom(
-          backgroundColor: isSelected ? colorScheme.primary : null,
-          primary: isSelected
-              ? colorScheme.onPrimary
-              : year == DateTime.now().year
-                  ? colorScheme.primary
-                  : colorScheme.onSurface.withOpacity(0.8),
-          shape: const StadiumBorder()),
-      child: Text(DateFormat.y().format(DateTime(year))),
+        backgroundColor: isSelected ? Colors.blue : null,
+        primary: isSelected
+            ? colorScheme.onPrimary
+            : year == DateTime.now().year
+                ? Colors.blue
+                : colorScheme.onSurface.withOpacity(0.8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+      ),
+      child: Text(
+        DateFormat.y().format(DateTime(year)),
+      ),
     );
   }
 
@@ -259,10 +268,13 @@ class __MonthPickerState extends State<_MonthPicker> {
             : date.month == DateTime.now().month
                 ? colorScheme.primary
                 : colorScheme.onSurface.withOpacity(0.8),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
+        ),
       ),
-      child: Text(DateFormat.MMM().format(date).toUpperCase()),
+      child: Text(
+        DateFormat.MMM().format(date).toUpperCase(),
+      ),
     );
   }
 

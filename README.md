@@ -47,10 +47,10 @@ final selected = await showMonthPicker(
 
 ## Screenshot
 
-| Mode           | Screenshot                     |
-| -------------- | ------------------------------ |
-| Portrait mode  | ![](screenshots/potrait.png)   |
-| Landscape mode | ![](screenshots/landscape.png) |
+| Mode           | Screenshot (Month)                   | Screenshot (Year)                   |
+| -------------- | ------------------------------------ | ----------------------------------- |
+| Portrait mode  | ![](screenshots/potrait_month.png)   | ![](screenshots/potrait_year.png)   |
+| Landscape mode | ![](screenshots/landscape_month.png) | ![](screenshots/landscape_year.png) |
 
 ## Next Goals
 
