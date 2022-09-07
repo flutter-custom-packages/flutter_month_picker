@@ -3,6 +3,13 @@ library flutter_month_picker;
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+/// three dates (initial, first and last) are required
+/// initialDate: initial date from which you want to start
+///               should be in bewtween firstDate and lastDate
+/// firstDate: date from which you want to start
+///             should not be before lastDate
+/// lastDate: date where you want to stop
+
 Future<DateTime?> showMonthPicker({
   required BuildContext context,
   required DateTime initialDate,

@@ -11,6 +11,8 @@ dependencies:
   flutter_month_picker: ^0.0.1
 ```
 
+OR just run `flutter pub add month_year_picker` using your preferred terminal app.
+
 2. Run
 
 ```
@@ -23,46 +25,32 @@ dependencies:
 import 'package:flutter_month_picker/flutter_month_picker.dart';
 ```
 
-## Example
-
-<hr>
-
-<table>
-<tr>
-<td>
+4. Usage in Code
 
 ```dart
-class FlutterMonthPicker extends StatelessWidget {
-  const FlutterMonthPicker({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: TextButton(
-          onPressed: () async {
-            final date = await showMonthPicker(
-              context: context,
-              initialDate: DateTime.now(),
-              firstDate: DateTime(2000),
-              lastDate: DateTime(2050),
-            );
-            log(date.toString());
-          },
-          child: const Text('Open Month Picker'),
-        ),
-      ),
-    );
-  }
-}
+final selected = await showMonthPicker(
+    context: context,
+    initialDate: DateTime.now(),
+    firstDate: DateTime(2000),
+    lastDate: DateTime(2050),
+  );
 ```
 
-</td>
-<td>
-<img  src="https://user-images.githubusercontent.com/4393183/188482276-784d4f5a-1aa6-47d4-8c14-371cc4ef94e7.png"  alt="">
-</td>
-</tr>
-</table>
+## Parameters
+
+| Parameters  |                                                                                                                                   Description                                                                                                                                    |
+| ----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | ----- |
+| context     |                                                                                                  Must not be null. Will be passed to the internal showMonthPicker funtion call                                                                                                   | $1600 |
+| initialDate | Must not be `null` and must fall between the `firstDate` and `lastDate`. The `initialDate` will be truncated to its `year` and `month` components. When the month/year picker is first displayed, it will show the month/year of the `initialDate`, with `initialDate` selected. |
+| firstDate   |                                                                      Must not be `null`. The `firstDate` will be truncated to its `year` and `month` components. This is the earliest allowable month/year.                                                                      |
+| lastDate    |                                                                       Must not be `null`. The `lastDate` will be truncated to its `year` and `month` components. This is the latest allowable month/year.                                                                        |
+
+## Screenshot
+
+| Mode           | Screenshot                     |
+| -------------- | ------------------------------ |
+| Portrait mode  | ![](screenshots/portrait.png)  |
+| Landscape mode | ![](screenshots/landscape.png) |
 
 ## Next Goals
 
